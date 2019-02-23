@@ -1,0 +1,15 @@
+{
+    "name": "mradang/lumen-attachment",
+    "description": "lumen-attachment",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "mradang",
+            "email": "mradang@163.com"
+        }
+    ],
+    "require": {
+        "gumlet/php-image-resize": "^1.9"
+    }
+}
