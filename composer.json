@@ -11,5 +11,10 @@
     ],
     "require": {
         "gumlet/php-image-resize": "^1.9"
+    },
+    "autoload": {
+        "psr-4": {
+            "mradang\\LumenAttachment\\": "src"
+        }
     }
 }
