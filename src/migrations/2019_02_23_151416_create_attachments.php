@@ -20,7 +20,7 @@ class CreateAttachments extends Migration
             $table->unsignedInteger('attachmentable_id'); // 对应所属模型的 ID
             $table->string('file_name'); // 文件名
             $table->unsignedInteger('file_size'); // 文件大小
-            $table->longText('data')->nullable(); // 附加数据
+            $table->longText('data'); // 附加数据
             $table->timestamps();
         });
     }
