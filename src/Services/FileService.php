@@ -11,7 +11,7 @@ class FileService {
         $folder_full = storage_path($folder_storage);
 
         if (!is_dir($folder_full)) {
-            mkdir($folder_full, 0644, true);
+            mkdir($folder_full, 0755, true);
         }
         return $folder_storage;
     }
@@ -47,7 +47,7 @@ class FileService {
             if (! file_exists($thumb_full)) {
                 $folder_full = dirname($thumb_full);
                 if (! is_dir($folder_full)) {
-                    mkdir($folder_full, 0644, true);
+                    mkdir($folder_full, 0755, true);
                 }
                 $image = new \Gumlet\ImageResize(storage_path($file_storage));
                 $image->resizeToBestFit($width, $height);
