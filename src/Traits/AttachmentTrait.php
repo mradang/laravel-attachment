@@ -38,4 +38,11 @@ trait AttachmentTrait {
         return AttachmentService::find(__CLASS__, $this->getKey(), $id);
     }
 
+    public static function boot() {
+        parent::boot();
+        static::deleting(function($model) {
+            $model->attachmentClear();
+        });
+    }
+
 }
