@@ -25,11 +25,13 @@ ATTACHMENT_THUMB_FOLDER=thumbs
 $app->register(mradang\LumenAttachment\LumenAttachmentServiceProvider::class);
 ```
 
-## 使用
-1. 模型引入 AttachmentTrait
+## 引入
+模型引入 AttachmentTrait
 ```php
 use mradang\LumenAttachment\Traits\AttachmentTrait;
 ```
+
+## 使用
 > 增加以下内容：
 > - morphMany attachments 附件关联（一对多）
 > - mradang\LumenAttachment\Models\Attachment attachmentAddByFile($file, array $data = []) 为模型上传文件附件
