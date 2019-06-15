@@ -76,24 +76,20 @@ class AttachmentService {
 
     public static function showPic($class, $key, $id, $width, $height) {
         $attachment = Attachment::findOrFail($id);
-        $filename = storage_path($attachment->file_name);
+        $filename = $attachment->file_name;
 
-        if (!FileService::isImage($attachment->file_name)) {
+        if (!FileService::isImage($filename)) {
             return response('非图片', 400);
         }
 
         if ($width && $height) {
-            $filename = FileService::makeThumb($attachment->file_name, $width, $height);
+            $filename = FileService::makeThumb($filename, $width, $height);
             if (empty($filename)) {
                 return response('生成缩略图失败', 400);
             }
         }
 
-        return response()->download(
-            $filename,
-            basename($filename),
-            ['Cache-Control' => 'max-age=31536000, must-revalidate']
-        );
+        return FileService::showImage($filename, $width, $height);
     }
 
     public static function find($class, $key, $id) {
