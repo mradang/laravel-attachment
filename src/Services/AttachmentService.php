@@ -3,11 +3,12 @@
 namespace mradang\LumenAttachment\Services;
 
 use mradang\LumenAttachment\Models\Attachment;
+use mradang\LumenFile\Services\FileService;
 
 class AttachmentService {
 
     public static function createByFile($class, $key, $file, $data) {
-        $filename = FileService::upload($file);
+        $filename = FileService::uploadFile($file);
 
         if (!$filename) {
             throw new \Exception('上传文件失败！');
@@ -17,7 +18,7 @@ class AttachmentService {
     }
 
     public static function createByUrl($class, $key, $url, $data) {
-        $filename = FileService::getUrl($url);
+        $filename = FileService::uploadUrl($url);
 
         if (!$filename) {
             throw new \Exception('获取远程文件失败！');
@@ -43,7 +44,7 @@ class AttachmentService {
     public static function deleteFile($class, $key, $id) {
         $attachment = Attachment::findOrFail($id);
         if ($attachment->attachmentable_id === $key && $attachment->attachmentable_type === $class) {
-            if (FileService::delete($attachment->file_name)) {
+            if (FileService::deleteFile($attachment->file_name)) {
                 $attachment->delete();
             }
         }
@@ -55,7 +56,7 @@ class AttachmentService {
             'attachmentable_type' => $class,
         ])->get();
         foreach ($attachments as $attachment) {
-            if (FileService::delete($attachment->file_name)) {
+            if (FileService::deleteFile($attachment->file_name)) {
                 $attachment->delete();
             }
         }

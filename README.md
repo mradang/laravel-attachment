@@ -4,6 +4,7 @@
 
 ## 依赖
 - gumlet/php-image-resize
+- mradang/lumen-file
 
 ## 安装
 ```
