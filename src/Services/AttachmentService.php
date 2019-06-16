@@ -64,14 +64,8 @@ class AttachmentService {
 
     public static function download($class, $key, $id, $name) {
         $attachment = Attachment::findOrFail($id);
-        $filename = storage_path($attachment->file_name);
-        $fileext = pathinfo($filename, PATHINFO_EXTENSION);
-        $filebase = $name ?: basename($filename, ".$fileext");
-        return response()->download(
-            $filename,
-            $filebase . ($fileext ? '.' : '') . $fileext,
-            ['Cache-Control' => 'max-age=31536000, must-revalidate']
-        );
+        $filename = $attachment->file_name;
+        return FileService::response($filename, $name);
     }
 
     public static function showPic($class, $key, $id, $width, $height) {
