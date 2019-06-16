@@ -33,6 +33,10 @@ class AttachmentService {
             'attachmentable_id' => $key,
             'file_name' => $filename,
             'file_size' => filesize(storage_path($filename)),
+            'sort' => Attachment::where([
+                'attachmentable_id' => $key,
+                'attachmentable_type' => $class,
+            ])->max('sort') + 1,
             'data' => $data,
         ]);
 
@@ -92,6 +96,16 @@ class AttachmentService {
             'attachmentable_id' => $key,
             'attachmentable_type' => $class,
         ])->first();
+    }
+
+    public static function saveSort($class, $key, array $data) {
+        foreach ($data as $item) {
+            Attachment::where([
+                'id' => $item['id'],
+                'attachmentable_id' => $key,
+                'attachmentable_type' => $class,
+            ])->update(['sort' => $item['sort']]);
+        }
     }
 
 }

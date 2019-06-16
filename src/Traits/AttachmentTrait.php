@@ -7,7 +7,7 @@ use mradang\LumenAttachment\Services\AttachmentService;
 trait AttachmentTrait {
 
     public function attachments() {
-        return $this->morphMany('mradang\LumenAttachment\Models\Attachment', 'attachmentable');
+        return $this->morphMany('mradang\LumenAttachment\Models\Attachment', 'attachmentable')->orderBy('sort');
     }
 
     public function attachmentAddByFile($file, array $data = []) {
@@ -36,6 +36,10 @@ trait AttachmentTrait {
 
     public function attachmentFind($id) {
         return AttachmentService::find(__CLASS__, $this->getKey(), $id);
+    }
+
+    public function attachmentSort(array $data) {
+        return AttachmentService::saveSort(__CLASS__, $this->getKey(), $data);
     }
 
     public static function boot() {

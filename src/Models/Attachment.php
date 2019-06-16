@@ -12,6 +12,7 @@ class Attachment extends Model {
         'attachmentable_id',
         'file_name',
         'file_size',
+        'sort',
         'data',
     ];
 
