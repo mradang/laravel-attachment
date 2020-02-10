@@ -1,6 +1,6 @@
 {
-    "name": "mradang/lumen-attachment",
-    "description": "lumen-attachment",
+    "name": "mradang/laravel-attachment",
+    "description": "laravel-attachment",
     "type": "library",
     "license": "MIT",
     "authors": [
@@ -11,11 +11,18 @@
     ],
     "require": {
         "gumlet/php-image-resize": "^1.9",
-        "mradang/lumen-file": "^1.1"
+        "laravel/framework": "~6.0"
     },
     "autoload": {
         "psr-4": {
-            "mradang\\LumenAttachment\\": "src"
+            "mradang\\LaravelAttachment\\": "src"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "mradang\\LaravelOss\\LaravelAttachmentServiceProvider"
+            ]
         }
     }
 }

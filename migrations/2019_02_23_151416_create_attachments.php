@@ -18,8 +18,9 @@ class CreateAttachments extends Migration
             $table->increments('id');
             $table->string('attachmentable_type'); // 对应所属模型的类名
             $table->unsignedInteger('attachmentable_id'); // 对应所属模型的 ID
-            $table->string('file_name'); // 文件名
-            $table->unsignedInteger('file_size'); // 文件大小
+            $table->string('filename'); // 文件名
+            $table->unsignedInteger('filesize'); // 文件大小
+            $table->string('imageInfo')->nullable(); // 图片信息 JSON（height, width)
             $table->unsignedInteger('sort'); // 排序
             $table->longText('data'); // 附加数据
             $table->timestamps();

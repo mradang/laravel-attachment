@@ -1,22 +1,15 @@
 <?php
 
-namespace mradang\LumenAttachment\Models;
+namespace mradang\LaravelAttachment\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Carbon\Carbon;
 
-class Attachment extends Model {
-
-    protected $fillable = [
-        'attachmentable_type',
-        'attachmentable_id',
-        'file_name',
-        'file_size',
-        'sort',
-        'data',
-    ];
+class Attachment extends Model
+{
+    protected $guarded = [];
 
     protected $casts = [
+        'imageInfo' => 'array',
         'data' => 'array',
     ];
 
@@ -25,8 +18,8 @@ class Attachment extends Model {
         'attachmentable_id',
     ];
 
-    public function attachmentable() {
+    public function attachmentable()
+    {
         return $this->morphTo();
     }
-
 }
