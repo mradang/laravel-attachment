@@ -21,7 +21,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "mradang\\LaravelOss\\LaravelAttachmentServiceProvider"
+                "mradang\\LaravelAttachment\\LaravelAttachmentServiceProvider"
             ]
         }
     }
