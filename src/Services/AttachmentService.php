@@ -32,7 +32,7 @@ class AttachmentService
 
     private static function create($class, $key, $filename, $data)
     {
-        $imagesize = @getimagesize($filename);
+        $imagesize = @getimagesize(storage_path($filename));
 
         $attachment = new Attachment([
             'attachmentable_type' => $class,
