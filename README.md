@@ -33,11 +33,11 @@ use mradang\LaravelAttachment\Traits\AttachmentTrait;
 > - morphMany attachments 附件关联（一对多）
 > - mradang\LaravelAttachment\Models\Attachment attachmentAddByFile($file, array $data = []) 为模型上传文件附件
 > - mradang\LaravelAttachment\Models\Attachment attachmentAddByUrl($url, array $data = []) 为模型上传 Url 附件
+> - void attachmentSort(array $data) 附件排序
+> - string attachmentUrl($id) 附件 Url
+> - response attachmentDownload($id) 下载指定附件
 > - void attachmentDelete($id) 删除模型的指定附件
 > - void attachmentClear() 清空模型的全部附件
-> - response attachmentDownload($id) 下载指定附件
-> - response attachmentShowImage($id, $width = 0, $height = 0) 显示指定附件图片
-> - mradang\LaravelAttachment\Models\Attachment attachmentFind($id) 查找指定附件
 
 ### 模型 boot
 
