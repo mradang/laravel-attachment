@@ -3,17 +3,13 @@
 return [
 
     /*
-    |--------------------------------------------------------------------------
-    | 附件存储在 storage 下的目录名（默认：attachments）
-    |--------------------------------------------------------------------------
-    */
-    'attachment_folder' => env('ATTACHMENT_FOLDER', 'attachments'),
+     * The disk name to store file, the value is key of `disks` in `config/filesystems.php`
+     */
+    'disk' => env('ATTACHMENT_DISK', 'local'),
 
     /*
-    |--------------------------------------------------------------------------
-    | 缩略图存储在 storage 下的目录名（默认：thumbs）
-    |--------------------------------------------------------------------------
-    */
-    'thumb_folder' => env('ATTACHMENT_THUMB_FOLDER', 'thumbs'),
+     * Default directory.
+     */
+    'directory' => env('ATTACHMENT_DIRECTORY', 'attachments'),
 
 ];

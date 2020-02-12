@@ -3,6 +3,7 @@
 namespace mradang\LaravelAttachment\Traits;
 
 use mradang\LaravelAttachment\Services\AttachmentService;
+use Illuminate\Http\UploadedFile;
 
 trait AttachmentTrait
 {
@@ -12,24 +13,24 @@ trait AttachmentTrait
         return $this->morphMany('mradang\LaravelAttachment\Models\Attachment', 'attachmentable')->orderBy('sort');
     }
 
-    public function attachmentAddByFile($file, array $data = [])
+    public function attachmentAddByFile(UploadedFile $file, array $data = [])
     {
         return AttachmentService::createByFile(__CLASS__, $this->getKey(), $file, $data);
     }
 
-    public function attachmentAddByUrl($url, array $data = [])
+    public function attachmentAddByUrl(string $url, array $data = [])
     {
         return AttachmentService::createByUrl(__CLASS__, $this->getKey(), $url, $data);
     }
 
-    public function attachmentDelete($id)
+    public function attachmentSort(array $data)
     {
-        return AttachmentService::deleteFile(__CLASS__, $this->getKey(), $id);
+        return AttachmentService::saveSort(__CLASS__, $this->getKey(), $data);
     }
 
-    public function attachmentClear()
+    public function attachmentUrl($id)
     {
-        return AttachmentService::clear(__CLASS__, $this->getKey());
+        return AttachmentService::url(__CLASS__, $this->getKey(), $id);
     }
 
     public function attachmentDownload($id)
@@ -37,18 +38,13 @@ trait AttachmentTrait
         return AttachmentService::download(__CLASS__, $this->getKey(), $id);
     }
 
-    public function attachmentShowImage($id, $width = 0, $height = 0)
+    public function attachmentDelete($id)
     {
-        return AttachmentService::showImage(__CLASS__, $this->getKey(), $id, $width, $height);
+        return AttachmentService::delete(__CLASS__, $this->getKey(), $id);
     }
 
-    public function attachmentFind($id)
+    public function attachmentClear()
     {
-        return AttachmentService::find(__CLASS__, $this->getKey(), $id);
-    }
-
-    public function attachmentSort(array $data)
-    {
-        return AttachmentService::saveSort(__CLASS__, $this->getKey(), $data);
+        return AttachmentService::clear(__CLASS__, $this->getKey());
     }
 }

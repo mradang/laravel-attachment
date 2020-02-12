@@ -10,7 +10,6 @@
         }
     ],
     "require": {
-        "gumlet/php-image-resize": "^1.9",
         "laravel/framework": "~6.0"
     },
     "autoload": {
