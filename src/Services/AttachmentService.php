@@ -6,6 +6,7 @@ use mradang\LaravelAttachment\Models\Attachment;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\File;
+use mradang\LaravelAttachment\Jobs\MakeThumbnail;
 
 class AttachmentService
 {
@@ -96,6 +97,71 @@ class AttachmentService
         ])->firstOrFail();
 
         return Storage::disk(config('attachment.disk'))->download($attachment->filename);
+    }
+
+    public static function showImage($class, $key, int $id, int $width, int $height)
+    {
+        $attachment = Attachment::where([
+            'id' => $id,
+            'attachmentable_id' => $key,
+            'attachmentable_type' => $class,
+        ])->firstOrFail();
+
+        if (empty($attachment->imageInfo)) {
+            abort('500', 'Not a picture.');
+        }
+
+        if (!$width || !$height) {
+            return Storage::disk(config('attachment.disk'))->download($attachment->filename);
+        }
+
+        $thumb = self::generateThumbName($attachment->filename, $width, $height);
+        if (!Storage::disk(config('attachment.disk'))->exists($thumb)) {
+            dispatch(new MakeThumbnail($attachment->filename, $width, $height));
+            return Storage::disk(config('attachment.disk'))->download($attachment->filename);
+        }
+
+        return Storage::disk(config('attachment.disk'))->download($thumb);
+    }
+
+    // 生成图片缩略图
+    public static function makeThumb(string $storage_filename, int $width, int $height)
+    {
+        $storagePath = Storage::disk(config('attachment.disk'))->getDriver()->getAdapter()->getPathPrefix();
+        $pathname = $storagePath . $storage_filename;
+
+        if (!is_file($pathname)) {
+            return false;
+        }
+
+        $imagesize = @getimagesize($pathname);
+        if (!is_array($imagesize)) {
+            return false;
+        }
+
+        $thumb_full = $storagePath . self::generateThumbName($storage_filename, $width, $height);
+
+        if (!is_file($thumb_full)) {
+            $path = dirname($thumb_full);
+            if (!is_dir($path)) {
+                mkdir($path, 0755, true);
+            }
+            $image = new \Gumlet\ImageResize($pathname);
+            $image->resizeToBestFit($width, $height);
+            $image->save($thumb_full, \IMAGETYPE_JPEG);
+        }
+    }
+
+    // 生成缩略图存储文件名
+    private static function generateThumbName(string $storage_filename, int $width, int $height)
+    {
+        return sprintf(
+            '%s/%s_%dx%d.jpg',
+            \rtrim(config('attachment.thumbnail'), '/'),
+            $storage_filename,
+            $width,
+            $height
+        );
     }
 
     public static function delete($class, $key, $id)

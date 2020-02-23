@@ -11,9 +11,9 @@ composer require mradang/laravel-attachment
 1. 添加 .env 环境变量，使用默认值时可省略
 ```
 # 附件存储在 storage 下的目录名（默认：attachments）
-ATTACHMENT_FOLDER=attachments
+ATTACHMENT_DIRECTORY=attachments
 # 缩略图存储在 storage 下的目录名（默认：thumbs）
-ATTACHMENT_THUMB_FOLDER=thumbs
+ATTACHMENT_THUMBNAIL=thumbs
 ```
 
 ## 添加的内容
@@ -36,6 +36,7 @@ use mradang\LaravelAttachment\Traits\AttachmentTrait;
 > - void attachmentSort(array $data) 附件排序
 > - string attachmentUrl($id) 附件 Url
 > - response attachmentDownload($id) 下载指定附件
+> - response attachmentShowImage($id, int $width, int $height) 显示附件图片
 > - void attachmentDelete($id) 删除模型的指定附件
 > - void attachmentClear() 清空模型的全部附件
 
