@@ -7,7 +7,6 @@ use Illuminate\Http\UploadedFile;
 
 trait AttachmentTrait
 {
-
     public function attachments()
     {
         return $this->morphMany('mradang\LaravelAttachment\Models\Attachment', 'attachmentable')->orderBy('sort');
@@ -51,5 +50,12 @@ trait AttachmentTrait
     public function attachmentClear()
     {
         return AttachmentService::clear(__CLASS__, $this->getKey());
+    }
+
+    protected static function bootAttachmentTrait()
+    {
+        static::deleting(function ($model) {
+            $model->attachmentClear();
+        });
     }
 }

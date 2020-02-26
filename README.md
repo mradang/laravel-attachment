@@ -40,15 +40,4 @@ use mradang\LaravelAttachment\Traits\AttachmentTrait;
 > - void attachmentDelete($id) 删除模型的指定附件
 > - void attachmentClear() 清空模型的全部附件
 
-### 模型 boot
-
-```php
-protected static function boot()
-{
-    parent::boot();
-    // 模型删除时自动清理附件
-    static::deleting(function($model) {
-        $model->attachmentClear();
-    });
-}
-```
+#### 模型删除时自动清理附件
