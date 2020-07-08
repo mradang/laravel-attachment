@@ -6,7 +6,6 @@ use Illuminate\Support\ServiceProvider;
 
 class LaravelAttachmentServiceProvider extends ServiceProvider
 {
-
     public function register()
     {
         $this->mergeConfigFrom(
