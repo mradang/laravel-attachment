@@ -11,12 +11,17 @@
     ],
     "require": {
         "guzzlehttp/guzzle": "^6.5",
-        "laravel/framework": "~6.0",
+        "laravel/framework": "~6.0|~7.0",
         "gumlet/php-image-resize": "^1.9"
     },
     "autoload": {
         "psr-4": {
             "mradang\\LaravelAttachment\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests"
         }
     },
     "extra": {
@@ -25,5 +30,9 @@
                 "mradang\\LaravelAttachment\\LaravelAttachmentServiceProvider"
             ]
         }
+    },
+    "require-dev": {
+        "orchestra/testbench": "^5.3",
+        "phpunit/phpunit": "^9.2"
     }
 }
