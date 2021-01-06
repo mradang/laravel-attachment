@@ -10,8 +10,8 @@
         }
     ],
     "require": {
-        "guzzlehttp/guzzle": "^6.5",
-        "laravel/framework": "~6.0|~7.0",
+        "guzzlehttp/guzzle": "^6.3.1||^7.0.1",
+        "laravel/framework": "~6.0||~7.0||~8.0",
         "gumlet/php-image-resize": "^1.9"
     },
     "autoload": {
@@ -32,7 +32,8 @@
         }
     },
     "require-dev": {
-        "orchestra/testbench": "^5.3",
-        "phpunit/phpunit": "^9.2"
+        "laravel/framework": "^6.18",
+        "phpunit/phpunit": "~8.0",
+        "orchestra/testbench": "^4.7"
     }
 }
