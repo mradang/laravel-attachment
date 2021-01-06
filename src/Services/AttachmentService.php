@@ -111,6 +111,10 @@ class AttachmentService
             abort('500', 'Not a picture.');
         }
 
+        if (!Storage::disk(config('attachment.disk'))->exists($attachment->filename)) {
+            abort(404);
+        }
+
         if (!$width || !$height) {
             return Storage::disk(config('attachment.disk'))->download($attachment->filename);
         }
