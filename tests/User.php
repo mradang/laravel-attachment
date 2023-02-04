@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests;
+namespace mradang\LaravelAttachment\Test;
 
 use Illuminate\Database\Eloquent\Model;
 use mradang\LaravelAttachment\Traits\AttachmentTrait;

@@ -27,21 +27,6 @@ trait AttachmentTrait
         return AttachmentService::saveSort(__CLASS__, $this->getKey(), $data);
     }
 
-    public function attachmentUrl($id)
-    {
-        return AttachmentService::url(__CLASS__, $this->getKey(), $id);
-    }
-
-    public function attachmentDownload($id)
-    {
-        return AttachmentService::download(__CLASS__, $this->getKey(), $id);
-    }
-
-    public function attachmentShowImage($id, int $width = 0, int $height = 0)
-    {
-        return AttachmentService::showImage(__CLASS__, $this->getKey(), $id, $width, $height);
-    }
-
     public function attachmentDelete($id)
     {
         return AttachmentService::delete(__CLASS__, $this->getKey(), $id);

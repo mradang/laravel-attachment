@@ -1,10 +1,9 @@
 <?php
 
-namespace Tests;
+namespace mradang\LaravelAttachment\Test;
 
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Arr;
-use mradang\LaravelAttachment\Jobs\MakeThumbnail;
 use Illuminate\Support\Facades\Storage;
 
 class FeatureTest extends TestCase
@@ -41,10 +40,6 @@ class FeatureTest extends TestCase
 
         // 现有 2 个附件
         $this->assertSame(2, $user1->attachments->count());
-
-        // 生成缩略图
-        $this->expectsJobs(MakeThumbnail::class);
-        $user1->attachmentShowImage($att1->id, 40, 20);
 
         // 删除第 2 个附件
         $user1->attachmentDelete($att2->id);

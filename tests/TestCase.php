@@ -1,11 +1,13 @@
 <?php
 
-namespace Tests;
+namespace mradang\LaravelAttachment\Test;
 
 use mradang\LaravelAttachment\LaravelAttachmentServiceProvider;
 
-abstract class TestCase extends \Orchestra\Testbench\TestCase
+class TestCase extends \Orchestra\Testbench\TestCase
 {
+    protected $app;
+
     /**
      * Load package service provider.
      *

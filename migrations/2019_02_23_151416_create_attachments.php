@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAttachments extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
@@ -15,7 +15,7 @@ class CreateAttachments extends Migration
     {
         // 附件表
         Schema::create('attachments', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->string('attachmentable_type'); // 对应所属模型的类名
             $table->unsignedInteger('attachmentable_id'); // 对应所属模型的 ID
             $table->string('filename'); // 文件名
@@ -36,4 +36,4 @@ class CreateAttachments extends Migration
     {
         Schema::dropIfExists('attachments');
     }
-}
+};

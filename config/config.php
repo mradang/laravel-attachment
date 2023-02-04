@@ -12,9 +12,4 @@ return [
      */
     'directory' => env('ATTACHMENT_DIRECTORY', 'attachments'),
 
-    /*
-     * Thumbnail directory.
-     */
-    'thumbnail' => env('ATTACHMENT_THUMBNAIL', 'thumbnails'),
-
 ];
