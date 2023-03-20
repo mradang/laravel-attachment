@@ -6,7 +6,7 @@
         {
             "label": "test",
             "type": "shell",
-            "command": "vendor/bin/phpunit"
+            "command": "vendor/bin/phpunit --colors=always"
         }
     ]
 }
