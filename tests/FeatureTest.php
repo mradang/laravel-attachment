@@ -8,12 +8,12 @@ use Illuminate\Support\Facades\Storage;
 
 class FeatureTest extends TestCase
 {
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
     }
 
-    public function testBasicFeatures()
+    public function test_basic_features()
     {
         $user1 = User::create(['name' => 'user1']);
         $this->assertSame(1, $user1->id);

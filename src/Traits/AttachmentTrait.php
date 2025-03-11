@@ -2,8 +2,8 @@
 
 namespace mradang\LaravelAttachment\Traits;
 
-use mradang\LaravelAttachment\Services\AttachmentService;
 use Illuminate\Http\UploadedFile;
+use mradang\LaravelAttachment\Services\AttachmentService;
 
 trait AttachmentTrait
 {

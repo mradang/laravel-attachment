@@ -21,7 +21,7 @@ class AttachmentService
         Http::sink($temp_file)->get($url);
 
         $file = new File($temp_file);
-        if (!in_array($file->guessExtension(), $allow_exts)) {
+        if (! in_array($file->guessExtension(), $allow_exts)) {
             return false;
         }
 
@@ -31,8 +31,8 @@ class AttachmentService
     private static function create($class, $key, $file, $data)
     {
         $directory = Str::finish(config('attachment.directory'), '/')
-            . \strtolower(class_basename($class)) . '/'
-            . $key;
+            .\strtolower(class_basename($class)).'/'
+            .$key;
 
         $imagesize = @getimagesize($file->getPathname());
         $imageInfo = is_array($imagesize) ? ['width' => $imagesize[0], 'height' => $imagesize[1]] : null;
