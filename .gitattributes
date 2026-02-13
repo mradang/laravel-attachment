@@ -1,0 +1,8 @@
+/.vscode export-ignore
+/tests export-ignore
+/.editorconfig export-ignore
+/.gitattributes export-ignore
+/.gitignore export-ignore
+/Dockerfile export-ignore
+/Makefile export-ignore
+/phpunit.xml export-ignore

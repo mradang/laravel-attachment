@@ -1,0 +1,10 @@
+{
+    "emeraldwalk.runonsave": {
+        "commands": [
+            {
+                "match": "\\.php$",
+                "cmd": "make pint FILE=${relativeFile}"
+            }
+        ]
+    }
+}
